@@ -1,0 +1,56 @@
+<h1> Billing Details </h1>
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+<div class="right_content">
+<%= link_to "New", new_billing_detail_path, :class =>'button_example' %>
+</div>
+
+<table align="center" border cellpadding="8" cellspacing="6">
+	<tr>
+	    
+		<th> User </th>
+		<th> BillingType </th>
+		<th> TransactionStatus </th>
+		<th> Action </th>
+	</tr>
+
+	<% @billing_details.each do |bd| %>
+	
+	<% @us = User.where(:id=>bd.user_id).first.username %>
+	
+	<tr>
+	    
+		<td><%= !@us.nil? ? @us :'tst'  %></td>
+		<td><%= bd.billing_type %></td>
+		<td><%= bd.transaction_status %></td>
+		<td><%= link_to "Show", billing_detail_path(bd) %>
+	    <%= link_to "Delete", billing_detail_path(bd), method: :delete, data: { confirm:  "Are you sure!" }%></td>
+	</tr>
+	<% end %>
+</table>
+
+
+<style>
+    .notice{
+    	color:#3ABf00;
+    }
+     h1
+    {
+    	position: relative;
+    	top: 25%;
+    	left: 35%;
+    	right: 45%;
+    	color: #01DF01;
+    }
+    .right_content{
+    	float:right;
+    }
+    .right_content a{
+    	text-decoration: none;
+    }
+    .right_content a:hover{
+    	text-decoration: underline;
+    }
+</style>

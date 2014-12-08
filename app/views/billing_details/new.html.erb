@@ -1,0 +1,54 @@
+<h1> Creating BillingDetails </h1>
+
+<% if flash[:error] %>
+  <div class="error"><%= flash[:error] %></div>
+<% end %>
+
+<div class="right_content">
+<%= link_to "BillingDetails", billing_details_path, :class =>'button_example' %>
+<%= link_to "Back", reservation_details_path, :class =>'button_example' %>
+</div>
+
+<%= form_for @billing_detail do |f| %>
+<table>
+    
+    <tr>
+        <td><%= f.hidden_field :user_id, :value => current_user.id %> </td>
+    </tr>
+	<tr>
+        <td><%= f.label :billing_type %><br /></td>
+        <td> <%= f.radio_button :billing_type, "ByCreditCard"%> ByCreditCard</td>
+        <td> <%= f.radio_button :billing_type, "ByDebitCard"%> ByDebitCard</td>
+    </tr>
+    <tr>
+		<td> TransactionStatus </td>
+		<td><%= f.text_field :transaction_status %></td>
+	</tr>
+</table>
+<%= f.submit %>
+<% end %>
+
+
+
+<style>
+    .error{
+    	color:#FF0000;
+    }
+    h1
+    {
+    	position: relative;
+    	top: 25%;
+    	left: 35%;
+    	right: 45%;
+    	color: #FF00BF;
+    }
+    .right_content{
+        float:right;
+    }
+    .right_content a{
+        text-decoration: none;
+    }
+    .right_content a:hover{
+        text-decoration: underline;
+    }
+</style>

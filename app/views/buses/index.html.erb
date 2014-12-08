@@ -1,0 +1,78 @@
+<h1> Bus Details </h1>
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<div class="right_content">
+<%if is_admin?%>
+<%= link_to "New", new_bus_path, :class =>'button_example' %>
+<%= link_to "Booked Tickets", reservation_details_path, :class =>'button_example' %>
+<%end%>
+</div>
+
+<table align="center" border cellpadding="8" cellspacing="6">
+	<tr>
+	    
+		<th> Route </th>
+		<th> BusType </th>
+		<th> BusNames </th>
+		<th> NumberOfSeatsAvailable </th>
+		<th> DepartureTime </th>
+		<th> ArrivalTime </th>
+		<th> TicketPrice</th>
+		<th> Action </th>
+	</tr>
+
+	<% @buses.each do |b| %>
+	
+	<% @rot = Route.where(:id=>b.route_id).first.source %>
+	<% @bti = BusType.where(:id=>b.bus_type_id).first.type %>
+	
+	<tr>
+		
+		<td><%= !@rot.nil? ? @rot :'tst'  %></td>
+		<td><%= !@bti.nil? ? @bti :'tst'  %></td>
+		<td> <%= b.bus_names %></td>
+		<td style="text-align: center;"> <%= b.no_of_seats_available %></td>
+		<td> <%= b.departure_time %></td>
+		<td> <%= b.arrival_time %></td>
+		<td style="text-align: center;"> <%= b.ticket_price %></td>
+		<% if user_signed_in? %>
+		<td><%= link_to "Show", bus_path(b) %>
+		<%if is_admin?%>
+		<%= link_to "Edit", edit_bus_path(b) %>
+	    <%= link_to "Delete", bus_path(b), method: :delete, data: { confirm:  "Are you sure!" }%>
+	    <%end%>
+        <%= link_to "Book", new_reservation_detail_path(:price=>b.ticket_price) %></td>
+        <%end%>
+        
+	</tr>
+	<% end %>
+</table>
+
+
+
+<style>
+    .notice{
+    	color:#3ABf00;
+    }
+     h1
+    {
+    	position: relative;
+    	top: 25%;
+    	left: 35%;
+    	right: 45%;
+    	color: #01DF01;
+    }
+    .right_content{
+    	float:right;
+    }
+    .right_content a{
+    	text-decoration: none;
+    }
+    .right_content a:hover{
+    	text-decoration: underline;
+    }
+
+</style>

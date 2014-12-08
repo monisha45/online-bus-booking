@@ -1,0 +1,74 @@
+<h1> Creating Buses </h1>
+
+<div class="right_content">
+<%= link_to "Buses", buses_path,:class =>'button_example' %>
+</div>
+
+<% if flash[:error] %>
+  <div class="error"><%= flash[:error] %></div>
+<% end %>
+
+<%= form_for @bus do |f| %>
+<table>
+    
+	<tr>
+		<td><%= f.label :route_id %><br /></td>
+		<td><%= collection_select(:bus, :route_id, Route.all, :id, :source)  %> </td>
+	</tr>
+	<tr>
+		<td><%= f.label :bus_type_id %><br /></td>
+		<td><%= collection_select(:bus, :bus_type_id, BusType.all, :id, :type)  %> </td>
+	</tr>
+	<tr>
+		<td> Bus Names </td>
+		<td><%= f.text_field :bus_names %></td>
+	</tr>
+
+	<tr>
+		<td> Number Of Seats Available</td>
+		<td><%= f.number_field :no_of_seats_available %></td>
+	</tr>
+	<tr>
+		<td> Departure Time </td>
+		<td><%= f.time_select :departure_time %></td>
+	</tr>
+
+	<tr>
+		<td> Arrival Time </td>
+		<td><%= f.time_select :arrival_time %></td>
+	</tr>
+	<tr>
+		<td> Ticket Price </td>
+		<td><%= f.number_field :ticket_price %></td>
+	</tr>
+
+	
+</table>
+<%= f.submit %>
+<% end %>
+
+
+
+<style>
+    .error{
+    	color:#FF0000;
+    }
+    h1
+    {
+    	position: relative;
+    	top: 25%;
+    	left: 35%;
+    	right: 45%;
+    	color: #FF00BF;
+    }
+    .right_content{
+    	float:right;
+    }
+    .right_content a{
+    	text-decoration: none;
+    }
+    .right_content a:hover{
+    	text-decoration: underline;
+    }
+
+</style>

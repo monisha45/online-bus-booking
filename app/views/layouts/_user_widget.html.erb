@@ -1,0 +1,27 @@
+<% if user_signed_in? %>
+   <p>Welcome <span><%= current_user.username %></span></p>
+   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+   
+<% if is_customer?%>
+    <%=link_to 'PASSANGER', new_rot_path%>
+
+<% elsif is_admin? %>
+    <%=link_to 'ADMIN', buses_path%>
+    
+<%end%>
+
+<% else %>
+    <p>You are not signed in.</p>
+    <%= link_to 'Login', new_user_session_path %>
+<% end %>
+
+<style>
+    span
+    {
+    	position: relative;
+    	top: 100%;
+    	left: 0%;
+    	right: 100%;
+    	color: #FF00BF;
+    }
+</style>

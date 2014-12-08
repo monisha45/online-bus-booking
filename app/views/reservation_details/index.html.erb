@@ -1,0 +1,64 @@
+<h1> Reservation Details </h1>
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<div class="right_content">
+<%= link_to "New", new_reservation_detail_path, :class =>'button_example' %>
+<%= link_to "Back", buses_path(Bus.where(:route_id =>@routes)), :class =>'button_example' %>
+</div>
+
+<table align="center" border cellpadding="8" cellspacing="6">
+	<tr>
+	    <th> Bus </th>
+		<th> User </th>
+		<th> NumberOfPersons </th>
+		<th> Gender </th>
+		<th> TotalPrice </th>
+		<th> Action </th>
+	</tr>
+
+	<% @reservation_details.each do |r| %>
+	<% @b = Bus.where(:id=>r.bus_id).first.bus_names %>
+	<% @u = User.where(:id=>r.user_id).first.username %>
+	
+	
+	<tr>
+	    <td><%= !@b.nil? ? @b :'tst'  %></td>
+		<td><%= !@u.nil? ? @u :'tst'  %></td>
+		<td style="text-align: center;"><%= r.no_of_persons %></td>
+		<td><%= r.gender %></td>
+		<td><%= r.total_price %></td>
+		<td><%= link_to "Show", reservation_detail_path(r) %>
+	    <%= link_to "Delete", reservation_detail_path(r), method: :delete, data: { confirm:  "Are you sure!" }%>
+	    <%if is_customer?%>
+	    <%= link_to "Payment", new_billing_detail_path %>
+	    <%end%></td>
+	</tr>
+	<% end %>
+</table>
+
+
+<style>
+    .notice{
+    	color:#3ABf00;
+    }
+     h1
+    {
+    	position: relative;
+    	top: 25%;
+    	left: 35%;
+    	right: 45%;
+    	color: #01DF01;
+    }
+    .right_content{
+    	float:right;
+    }
+    .right_content a{
+    	text-decoration: none;
+    }
+    .right_content a:hover{
+    	text-decoration: underline;
+    }
+</style>

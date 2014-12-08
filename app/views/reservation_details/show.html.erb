@@ -1,0 +1,41 @@
+<h1>Reservation Details</h1>
+
+<div class="right_content">
+<%= link_to "New", new_reservation_detail_path, :class =>'button_example' %>
+<%= link_to "Back", reservation_details_path, :class =>'button_example' %>
+</div>
+
+
+<p>
+   <strong>NumberOfPersons:</strong>
+   <%= @reservation_detail.no_of_persons %>
+</p>
+<p>
+   <strong>Gender:</strong>
+   <%= @reservation_detail.gender %>
+</p>
+<p>
+   <strong>TotalPrice:</strong>
+   <%= @reservation_detail.total_price %>
+</p>
+
+
+<style>
+    h1
+    {
+      position: relative;
+      top: 25%;
+      left: 35%;
+      right: 45%;
+      color: #FA58AC;
+    }
+    .right_content{
+        float:right;
+    }
+    .right_content a{
+        text-decoration: none;
+    }
+    .right_content a:hover{
+        text-decoration: underline;
+    }
+</style>

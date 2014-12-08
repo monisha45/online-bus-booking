@@ -1,0 +1,49 @@
+
+<h1> Creating Routes </h1>
+
+<div class="right_content">
+<%= link_to "Routes", new_rot_path, :class =>'button_example' %>
+</div>
+
+<% if flash[:error] %>
+  <div class="error"><%= flash[:error] %></div>
+<% end %>
+
+<%= form_for @route do |f| %>
+<table>
+	<tr>
+		<td> Source </td>
+		<td><%= f.text_field :source %></td>
+	</tr>
+
+	<tr>
+		<td> Destination </td>
+		<td><%= f.text_field :destination %></td>
+	</tr>
+</table>
+<%= f.submit %>
+<% end %>
+
+<style>
+    .error{
+    	color:#FF0000;
+    }
+    h1
+    {
+    	position: relative;
+    	top: 25%;
+    	left: 35%;
+    	right: 45%;
+    	color: #FF00BF;
+    }
+    .right_content{
+        float:right;
+    }
+    .right_content a{
+        text-decoration: none;
+    }
+    .right_content a:hover{
+        text-decoration: underline;
+    }
+
+</style>

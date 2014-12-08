@@ -1,0 +1,45 @@
+<h1>Bus Details</h1>
+
+<div class="right_content">
+<%= link_to "New", new_bus_path, :class =>'button_example' %>
+<%= link_to "Back", buses_path, :class =>'button_example' %>
+</div>
+
+
+<p>
+   <strong>NumberOfSeatsAvailable:</strong>
+   <%= @bus.no_of_seats_available %>
+</p>
+<p>
+   <strong>DepartureTime:</strong>
+   <%= @bus.departure_time %>
+</p>
+<p>
+   <strong>ArrivalTime:</strong>
+   <%= @bus.arrival_time %>
+</p>
+<p>
+   <strong>TicketPrice:</strong>
+   <%= @bus.ticket_price %>
+</p>
+
+
+<style>
+    h1
+    {
+      position: relative;
+      top: 25%;
+      left: 35%;
+      right: 45%;
+      color: #FA58AC;
+    }
+    .right_content{
+      float:right;
+    }
+    .right_content a{
+      text-decoration: none;
+    }
+    .right_content a:hover{
+      text-decoration: underline;
+    }
+</style>

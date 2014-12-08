@@ -1,0 +1,10 @@
+<% #debugger
+ if user_signed_in? 
+	if is_admin?
+		rolename = 'Admin'
+	elsif is_customer?
+		rolename = 'Customer'
+	end
+ end
+%>
+<h1>Hi <%= rolename%></h1>

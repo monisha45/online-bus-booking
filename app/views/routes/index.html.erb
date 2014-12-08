@@ -1,0 +1,55 @@
+<h1> Bus Routes </h1>
+
+<div class="right_content">
+<%= link_to "back", root_path, :class =>'button_example' %>
+</div>
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<table align="center" border cellpadding="8" cellspacing="6">
+	<tr>
+		<th> Source </th>
+		<th> Destination </th>
+		<th> Action </th>
+	</tr>
+
+	<% @routes.each do |route| %>
+	
+	
+	<tr>
+		<td> <%= route.source %></td>
+		<td> <%= route.destination %></td>
+		<td><%= link_to "Show", route_path(route) %>
+	    <%= link_to "Delete", route_path(route), method: :delete, data: { confirm:  "Are you sure!" }%>
+	    <%= link_to "Search", buses_path %></td>
+	    
+	</tr>
+	<% end %>
+</table>
+
+
+
+<style>
+    .notice{
+    	color:#3ABf00;
+    }
+     h1
+    {
+    	position: relative;
+    	top: 25%;
+    	left: 35%;
+    	right: 45%;
+    	color: #01DF01;
+    }
+    .right_content{
+        float:right;
+    }
+    .right_content a{
+        text-decoration: none;
+    }
+    .right_content a:hover{
+        text-decoration: underline;
+    }
+</style>

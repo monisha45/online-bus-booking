@@ -1,0 +1,77 @@
+
+<h1> Creating ReservationDetails </h1>
+
+<% if flash[:error] %>
+  <div class="error"><%= flash[:error] %></div>
+<% end %>
+
+<div class="right_content">
+<%= link_to "ReservationDetails", reservation_details_path, :class =>'button_example' %>
+<%= link_to "Back", buses_path, :class =>'button_example' %>
+</div>
+
+<%= form_for @reservation_detail do |f| %>
+<table>
+    <tr>
+        <td><%= f.label :BusNames %><br /></td>
+        <td><%= collection_select(:reservation_detail, :bus_id, Bus.all, :id, :bus_names)  %> 
+    </tr>
+    <tr>
+        <td><%= f.hidden_field :user_id, :value => current_user.id %> </td>
+    </tr>
+	<tr>
+		<td> NumberOfPersons </td>
+		<td><%= f.number_field :no_of_persons, :value=>1, :class =>'target' %></td>
+	</tr>
+    <tr>
+        <td><%= f.label :gender %><br /></td>
+        <td> <%= f.radio_button :gender, "Male"%> Male</td>
+        <td> <%= f.radio_button :gender, "Female"%> Female</td>
+    </tr>
+
+	<tr>
+		<td> TotalPrice : </td>
+
+<td>
+        <%= f.number_field :total_price, :value =>@price, :class =>'total_price' %></td>
+	</tr>
+</table>
+<br><br>
+<%= f.submit "Book Ticket"%>
+<% end %>
+
+
+<script>
+$(document).ready(function(){
+    var b = parseInt($(".total_price").val());
+  $( ".target" ).change(function() {
+    var a = parseInt($(".target").val());    
+    var d = (a*b)
+    $(".total_price").val(d)
+  });
+});
+</script>
+
+<style>
+    .error{
+        color:#FF0000;
+    }
+    h1
+    {
+        position: relative;
+        top: 25%;
+        left: 35%;     
+        right: 45%;
+        color: #FF00BF;
+    }
+    .right_content{
+        float:right;
+    }
+    .right_content a{
+        text-decoration: none;
+    }
+    .right_content a:hover{
+        text-decoration: underline;
+    }
+    
+</style>

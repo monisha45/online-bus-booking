@@ -1,0 +1,52 @@
+<h1> Showing Roles </h1>
+
+<div class="right_content">
+<%= link_to "New", new_role_path, :class =>'button_example' %>
+</div>
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<table align="center" border cellpadding="8" cellspacing="6">
+	<tr>
+		<th> Name </th>
+		<th> Description </th>
+		<th> Action </th>
+	</tr>
+
+	<% @roles.each do |role| %>
+	
+	
+	<tr>
+		<td> <%= role.name %></td>
+		<td> <%= role.descriptions %></td>
+		<td><%= link_to "Show", role_path(role) %>
+	    <%= link_to "Delete", role_path(role), method: :delete, data: { confirm:  "Are you sure!" }%></td>
+	</tr>
+	<% end %>
+</table>
+
+
+<style>
+    .notice{
+    	color:#3ABf00;
+    }
+     h1
+    {
+    	position: relative;
+    	top: 25%;
+    	left: 35%;
+    	right: 45%;
+    	color: #01DF01;
+    }
+    .right_content{
+    	float:right;
+    }
+    .right_content a{
+    	text-decoration: none;
+    }
+    .right_content a:hover{
+    	text-decoration: underline;
+    }
+</style>

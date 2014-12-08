@@ -1,0 +1,35 @@
+<h1>BusType Details</h1>
+
+<div class="right_content">
+<%= link_to "New", new_bus_type_path, :class =>'button_example' %>
+<%= link_to "Back", bus_types_path, :class =>'button_example' %>
+</div>
+
+<p>
+   <strong>Type:</strong>
+   <%= @bus_type.type %>
+</p>
+<p>
+   <strong>Description:</strong>
+   <%= @bus_type.description %>
+</p>
+
+<style>
+    h1
+    {
+    	position: relative;
+    	top: 25%;
+    	left: 35%;
+    	right: 45%;
+    	color: #FA58AC;
+    }
+    .right_content{
+        float:right;
+    }
+    .right_content a{
+        text-decoration: none;
+    }
+    .right_content a:hover{
+        text-decoration: underline;
+    }
+</style>

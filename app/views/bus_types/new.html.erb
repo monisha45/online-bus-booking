@@ -1,0 +1,47 @@
+<h1> Creating Bus_types </h1>
+
+<div class="right_content">
+<%= link_to "Bustypes", bus_types_path, :class =>'button_example' %>
+</div>
+
+<% if flash[:error] %>
+  <div class="error"><%= flash[:error] %></div>
+<% end %>
+
+<%= form_for @bus_type do |f| %>
+<table>
+	<tr>
+		<td> Type </td>
+		<td><%= f.text_field :type %></td>
+	</tr>
+
+	<tr>
+		<td> Description </td>
+		<td><%= f.text_area :description %></td>
+	</tr>
+</table>
+<%= f.submit %>
+<% end %>
+
+<style>
+    .error{
+    	color:#FF0000;
+    }
+    h1
+    {
+    	position: relative;
+    	top: 25%;
+    	left: 35%;
+    	right: 45%;
+    	color: #FF00BF;
+    }
+    .right_content{
+        float:right;
+    }
+    .right_content a{
+        text-decoration: none;
+    }
+    .right_content a:hover{
+        text-decoration: underline;
+    }
+</style>
